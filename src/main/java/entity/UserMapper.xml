@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<select id="findUser" parameterType="com.test.entity.user.UserDTO" resultType="int">
+		select count(*) from userinfo where userid like #{userId}
+	</select>
+	<select id="login" parameterType="com.test.entity.user.UserDTO" resultType="int">
+		select count(*) from userinfo where userid like #{userId} and passwd like #{passwd}
+	</select>
+	<select id="postSelect" resultType="com.test.entity.user.UserPostWriteDTO" >
+	select userid as userId, title,content,posttype as postType, to_char(mtime,'yyyymmddhh') as mTime
+		from USERPOSTLIST where rownum <![CDATA[ >= ]]> #{offset} and rownum <![CDATA[ < ]]> #{limit} order by mtime desc 
+	</select>
+	
+	
+	<insert id="insert" parameterType="com.test.entity.user.UserDTO">
+		insert into userinfo (userId,passwd) values(#{userId},#{passwd})
+	</insert>
+	<insert id="postWrite" parameterType="com.test.entity.user.UserPostWriteDTO">
+		insert into USERPOSTLIST (USERID,TITLE,CONTENT,POSTTYPE,TAGS) values (#{userId},#{title},#{content},#{postType},#{tags} )
+	</insert>
+	<!-- (select count(*) from beaconList where lat = b.lat and lng = b.lng) as locationCount -->
+</mapper>
