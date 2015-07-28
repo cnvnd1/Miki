@@ -18,7 +18,6 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
-import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.batch.item.file.transform.FieldExtractor;
@@ -33,9 +32,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class BatchConfiguration_LocationList {
 	
 	
-
 	@Bean(name={"fileWrite"})
-	FlatFileItemWriter<LocationList> fileWrite(){
+	public FlatFileItemWriter<LocationList> fileWrite(){
 		FlatFileItemWriter<LocationList> fileWrite = new FlatFileItemWriter<LocationList>();
 		fileWrite.setResource(new ClassPathResource("afterlocationList.csv"));
 		DelimitedLineAggregator<LocationList> aggregator = new DelimitedLineAggregator<LocationList>();
@@ -53,8 +51,6 @@ public class BatchConfiguration_LocationList {
 			
 	}
 	
-	
-    // tag::readerwriterprocessor[]
     @Bean
     public ItemReader<LocationList> reader() {
         FlatFileItemReader<LocationList> reader = new FlatFileItemReader<LocationList>();
@@ -85,9 +81,7 @@ public class BatchConfiguration_LocationList {
         writer.setDataSource(dataSource);
         return writer;
     }
-    // end::readerwriterprocessor[]
-
-    // tag::jobstep[]
+  
     @Bean
     public Job importUserJob(JobBuilderFactory jobs, Step s1, JobExecutionListener listener) {
         return jobs.get("importUserJob")
@@ -108,7 +102,6 @@ public class BatchConfiguration_LocationList {
                 .writer(writer)
                 .build();
     }
-    // end::jobstep[]
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {

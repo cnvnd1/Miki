@@ -19,7 +19,7 @@ public class MainLogicRepository extends RepositoyAdaptor{
 	@Qualifier("sessionTemplete")
 	SqlSessionTemplate template;
 	
-	public List<BeaconWithUserIdDTO> selectAll(){
+	public List<BeaconWithUserIdDTO> MainLogicSelectAll(){
 		 log.info("select 실행 ~~~~~~~~~~~");
 		 List<BeaconWithUserIdDTO>  list = template.selectList("position.selectAll");
 		 log.info(list);

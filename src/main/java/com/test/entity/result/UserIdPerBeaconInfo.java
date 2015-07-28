@@ -31,5 +31,10 @@ public class UserIdPerBeaconInfo extends ResultDTO implements MakeDTOList{
 	public String getUserId() {
 		return userId;
 	}
-
+	@Override
+	public int getSize() {
+		// TODO Auto-generated method stub
+		return BeaconInfoList.size();
+	}
+	
 }
