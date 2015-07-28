@@ -46,7 +46,6 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		// TODO Auto-generated method stub
 		super.addViewControllers(registry);
-		registry.addViewController("/index").setViewName("index");
 		registry.addViewController("/loginForm").setViewName("loginForm");
 	}
 		
