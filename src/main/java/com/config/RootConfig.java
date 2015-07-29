@@ -20,7 +20,6 @@ import com.sheduler.SchedulerConfig;
 @Configuration
 @ComponentScan("com.test.dao, com.test.service, com.logic")
 @PropertySource(value="classpath:entity/jdbc.properties")
-@Import(value={SchedulerConfig.class})
 public class RootConfig {
 
 	@Value("${jdbc.driver}")

@@ -61,12 +61,12 @@ public class LocationController {
 			result = userService.userInsert(dto);
 		} catch (UserLoginException e) {
 			if(e instanceof LoginWrongPasswdException){
-				mav.addObject("errorMsg", ((LoginWrongPasswdException)e).getMessage());
+				session.setAttribute("errorMsg", ((LoginWrongPasswdException)e).getMessage());
 			}
 			if(e instanceof LoginDuplicateIdException){
-				mav.addObject("errorMsg", ((LoginDuplicateIdException)e).getMessage());
+				session.setAttribute("errorMsg", ((LoginDuplicateIdException)e).getMessage());
 			}	
-			mav.setViewName("/loginForm");
+			mav.setViewName("redirect:loginForm");
 			return mav;
 			
 		}
