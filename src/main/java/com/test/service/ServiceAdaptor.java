@@ -4,8 +4,10 @@ import java.util.List;
 
 
 
+
 import com.exception.UserLoginException;
 import com.test.dto.BeaconWithUserIdDTO;
+import com.test.dto.EventListDTO;
 import com.test.entity.user.UserDTO;
 import com.test.entity.user.UserPostWriteDTO;
 
@@ -31,6 +33,11 @@ public  class ServiceAdaptor implements Service{
 	}
 
 	public List<UserPostWriteDTO> userPostSelect() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<EventListDTO> eventListSelect() {
 		// TODO Auto-generated method stub
 		return null;
 	}

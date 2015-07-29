@@ -11,20 +11,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.test.dto.BeaconWithUserIdDTO;
+import com.test.dto.EventListDTO;
 
-@Repository("mainLogicRepository")
-public class MainLogicRepository extends RepositoyAdaptor{
+@Repository("adminRepository")
+public class AdminRepository extends RepositoyAdaptor{
 	
-	Log log = LogFactory.getLog(MainLogicRepository.class);
+	Log log = LogFactory.getLog(AdminRepository.class);
 	
 	@Autowired
 	@Qualifier("sessionTemplete")
 	SqlSessionTemplate template;
 	
-	public List<BeaconWithUserIdDTO> MainLogicSelectAll(){
-		 log.info("select 실행 ~~~~~~~~~~~");
-		 List<BeaconWithUserIdDTO>  list = template.selectList("position.selectAll");
-		 log.info(list);
-		return list;
+	public List<EventListDTO> eventListSelect() {
+		// TODO Auto-generated method stub
+		return template.selectList("event.eventList");
 	}
 }

@@ -61,14 +61,16 @@ public class RootConfig {
 		factory.setMapperLocations(new Resource[]
 				{
 					new ClassPathResource("entity/UserMapper.xml"),
-					new ClassPathResource("entity/LocationListMapper.xml")
+					new ClassPathResource("entity/LocationListMapper.xml"),
+					new ClassPathResource("entity/EventMapper.xml")
 				}
 		
 				);
 		return factory;
 	}
-	@Bean(name ="sessionTemplete1")
-	public  SqlSessionTemplate template1(){
+	
+	@Bean(name ="sessionTemplete")
+	public  SqlSessionTemplate sessionTemplete(){
 	
 		SqlSessionFactory xxx = null;
 		try {
@@ -81,19 +83,5 @@ public class RootConfig {
 		SqlSessionTemplate template = new SqlSessionTemplate(xxx);
 		return template;
 	}
-	@Bean(name ="sessionTemplete2")
-	public  SqlSessionTemplate template2(){
-
-		SqlSessionFactory xxx = null;
-		try {
-			xxx = factoryBean().getObject();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		SqlSessionTemplate template = new SqlSessionTemplate(xxx);
-		return template;
-	}
-
+	
 }

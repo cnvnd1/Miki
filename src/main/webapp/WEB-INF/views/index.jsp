@@ -15,7 +15,7 @@
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="<%= request.getContextPath()%>/resources/img/favicon.png">
 
     <title>Creative - Bootstrap Admin Template</title>
 	
@@ -50,80 +50,49 @@
 <script type='text/javascript'>
 
 	$(document).ready(function() {
-	
+		var eventList;
 		var date = new Date();
 		var d = date.getDate();
 		var m = date.getMonth();
 		var y = date.getFullYear();
 		
-		$('#calendar2').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			editable: true,
-			events: [
-				{
-					title: '대 하일 이벤트',
-					start: new Date(y, m, 3)
-				},
-				{
-					title: '솔로 이벤트 ',
-					start: new Date(y, m, d-5),
-					end: new Date(y, m, d-2)
-				},
-				{
-					id: 999,
-					title: '반값 할인 이벤트 ',
-					start: new Date(y, m, d-3, 16, 0),
-					allDay: false
-				},
-				{
-					id: 999,
-					title: '루룰루루 ~~~',
-					start: new Date(y, m, d+4, 16, 0),
-					allDay: false
-				},
-				{
-					title: '하하하하 ',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				},
-				{
-					title: '점심을 드립니다',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				},
-				
-			]
-		});
-		
-	});
-
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-
-	 $(function(){
-		
 		$.ajax({
-			url : "postListSelect",
+			url : "eventList",
 			method:"get",			
 			dataType:"json",
 			success:function(responseData,status,xhr){
 				//원래는 status확인 하는게 좋음 성공 200인지 
-				console.log(responseData);
-				var postArray = responseData;
 				
+				console.log(responseData);
+			
+				
+			
+				
+				$('#calendar2').fullCalendar({
+					header: {
+						left: 'prev,next today',
+						center: 'title',
+						right: 'month,agendaWeek,agendaDay'
+					},
+					editable: true,
+					
+						
+					
+					events: [
+								{
+									title: 'All Day Event',
+									start: new Date(y, m, 3)
+								}]
+					
+				});
 			}
 		});
 		
 	});
-	
-});
+		
+
 </script>
+
 	<script type="text/javascript">
 
 
@@ -1138,9 +1107,28 @@ $(document).ready(function() {
 							<td><span class="badge bg-important">카테고리</span></td>
 							<td>글쓴이</td>
 						</tr>
-						<div >
-					
-						</div>
+						<c:forEach var="post" items="${postList}">
+							<tr>
+								<td>${post.mTime}</td>
+								 <td>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                           
+                            <span class="username">${post.title}</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li class="eborder-top">
+							<div class="chat-meta"><strong>${post.content}</strong></div>
+                            </li>                        
+                        </ul>
+                    </li>       
+                                  </td>
+								<td>${post.postType}</td>
+								<td>${post.userId}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 

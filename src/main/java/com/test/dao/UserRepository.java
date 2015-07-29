@@ -11,6 +11,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.exception.LoginWrongPasswdException;
 import com.exception.PostWriteException;
@@ -18,7 +19,7 @@ import com.exception.UserLoginException;
 import com.test.entity.user.UserDTO;
 import com.test.entity.user.UserPostWriteDTO;
 
-@Component("userRepository")
+@Repository("userRepository")
 public class UserRepository extends RepositoyAdaptor{
 	private static final int USERID_NOTFOUND = 0;	
 	private static final int SUCCESS = 1;	
@@ -29,7 +30,7 @@ public class UserRepository extends RepositoyAdaptor{
 	Log log = LogFactory.getLog(UserRepository.class);
 	
 	@Autowired
-	@Qualifier("sessionTemplete2")
+	@Qualifier("sessionTemplete")
 	SqlSessionTemplate template;
 	
 	public int userInsert(UserDTO dto) throws UserLoginException{
