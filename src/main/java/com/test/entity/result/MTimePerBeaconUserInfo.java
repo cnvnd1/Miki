@@ -31,5 +31,9 @@ public class MTimePerBeaconUserInfo extends ResultDTO implements MakeDTOList{
 	public String getMtime() {
 		return mTime;
 	}
-
+	@Override
+	public int getSize() {
+		return BeaconUserInfoList.size();
+	}
+	
 }

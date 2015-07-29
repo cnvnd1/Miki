@@ -35,6 +35,11 @@ public class BeaconUserInfoDTO extends DTO{
 	public void setLng(Double lng) {
 		this.lng = lng;
 	}
+	@Override
+	public String toString() {
+		return "BeaconUserInfoDTO [userId=" + userId + ", lat=" + lat
+				+ ", lng=" + lng + "]";
+	}
 	
 	
 	
