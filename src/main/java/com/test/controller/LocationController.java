@@ -33,9 +33,6 @@ public class LocationController {
 	@Autowired
 	@Qualifier("mainLogicService")
 	ServiceAdaptor mainService;
-	@Autowired
-	@Qualifier("userService")
-	ServiceAdaptor userService;
 	
 	@Autowired
 	@Qualifier("mainLogic")
@@ -43,59 +40,8 @@ public class LocationController {
 	
 	Log log = LogFactory.getLog(LocationController.class);
 	
-
-	@RequestMapping("/index")
-	public ModelAndView index(ModelAndView mav){
-		log.info("index() 실행 >>>>>>>>>>>");	
-		List<UserPostWriteDTO> postList = userService.userPostSelect();
-		mav.addObject("postList",postList);
-		mav.setViewName("index");
-		return mav;
-	}
 	
-	@RequestMapping("login")
-	public ModelAndView login(UserDTO dto,ModelAndView mav,HttpSession session){
-		
-		int result = 0 ;
-		try {
-			result = userService.userInsert(dto);
-		} catch (UserLoginException e) {
-			if(e instanceof LoginWrongPasswdException){
-				mav.addObject("errorMsg", ((LoginWrongPasswdException)e).getMessage());
-			}
-			if(e instanceof LoginDuplicateIdException){
-				mav.addObject("errorMsg", ((LoginDuplicateIdException)e).getMessage());
-			}	
-			mav.setViewName("/loginForm");
-			return mav;
-			
-		}
-		if(USERID_INPUTSUCCESS == result){
-			//쿠키에 저장 
-			log.info("가입성공 ");
-			mav.setViewName("redirect:/index");
-			session.setAttribute("userId", dto.getUserId());
-			return mav;
-		}else{
-			log.info("가입실패");
-			mav.setViewName("redirect:loginForm");
-			return mav;
-		}
 	
-	}
-	@RequestMapping(value ="postWrite",method = RequestMethod.POST)
-	public ModelAndView write(UserPostWriteDTO dto, ModelAndView mav){
-		
-		try {
-			userService.userPostWrite(dto);
-		} catch (UserLoginException e) {
-			if(e instanceof PostWriteException){
-				mav.addObject("errorMsg", ((PostWriteException)e).getMessage());
-			}
-		}
-		mav.setViewName("redirect:/index");
-		return mav;
-	}
 	
 	
 }

@@ -8,19 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import com.sheduler.SchedulerConfig;
-
 
 @Configuration
 @ComponentScan("com.test.dao, com.test.service, com.logic")
 @PropertySource(value="classpath:entity/jdbc.properties")
-@Import(value={SchedulerConfig.class})
+
 public class RootConfig {
 
 	@Value("${jdbc.driver}")
@@ -34,7 +31,7 @@ public class RootConfig {
    
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer properties(){
-		System.out.println("properties >>>>>>>>>>>>>>.");
+	
 		PropertySourcesPlaceholderConfigurer configure=
 				new PropertySourcesPlaceholderConfigurer();
 		return configure;
@@ -42,14 +39,10 @@ public class RootConfig {
 
 	@Bean
 	public  BasicDataSource dataSource(){
-		System.out.println("dataSource >>>>>>>>>>>>>>.");
+		
 		BasicDataSource dataSource = 
 				new BasicDataSource();
-		System.out.println("driverClassName> " +driverClassName);
-		System.out.println("url> " +url);
-		System.out.println("userid> " +userid);
-		System.out.println("password> " +passwd);
-		
+			
 		dataSource.setDriverClassName(driverClassName);
 		dataSource.setUrl(url);
 		dataSource.setUsername(userid);
@@ -59,7 +52,7 @@ public class RootConfig {
 	
 	@Bean
 	public  SqlSessionFactoryBean factoryBean(){
-		System.out.println("factoryBean >>>>>>>>>>>>>>.");
+	
 		SqlSessionFactoryBean factory
 		 = new SqlSessionFactoryBean();
 	
@@ -74,10 +67,9 @@ public class RootConfig {
 				);
 		return factory;
 	}
-	@Bean(name ="sessionTemplete")
-	public  SqlSessionTemplate template(){
-		
-		System.out.println("template >>>>>>>>>>>>>>.");
+	@Bean(name ="sessionTemplete1")
+	public  SqlSessionTemplate template1(){
+	
 		SqlSessionFactory xxx = null;
 		try {
 			xxx = factoryBean().getObject();
@@ -89,4 +81,19 @@ public class RootConfig {
 		SqlSessionTemplate template = new SqlSessionTemplate(xxx);
 		return template;
 	}
+	@Bean(name ="sessionTemplete2")
+	public  SqlSessionTemplate template2(){
+
+		SqlSessionFactory xxx = null;
+		try {
+			xxx = factoryBean().getObject();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		SqlSessionTemplate template = new SqlSessionTemplate(xxx);
+		return template;
+	}
+
 }

@@ -29,7 +29,7 @@ public class UserRepository extends RepositoyAdaptor{
 	Log log = LogFactory.getLog(UserRepository.class);
 	
 	@Autowired
-	@Qualifier("sessionTemplete")
+	@Qualifier("sessionTemplete2")
 	SqlSessionTemplate template;
 	
 	public int userInsert(UserDTO dto) throws UserLoginException{

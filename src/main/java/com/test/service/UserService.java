@@ -2,6 +2,8 @@ package com.test.service;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ public class UserService extends ServiceAdaptor{
 	@Autowired
 	@Qualifier("userRepository")
 	RepositoyAdaptor repo;
+	Log log = LogFactory.getLog(UserService.class);
 	
 	public int userInsert(UserDTO dto) throws UserLoginException{
 		return repo.userInsert(dto);
@@ -29,7 +32,7 @@ public class UserService extends ServiceAdaptor{
 
 	@Override
 	public List<UserPostWriteDTO> userPostSelect() {
-		
+		log.info("userPostSelect 실행 ~~~~~~~");
 		return repo.userPostSelect();
 	}
 }

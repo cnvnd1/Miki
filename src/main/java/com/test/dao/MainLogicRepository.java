@@ -16,7 +16,7 @@ public class MainLogicRepository extends RepositoyAdaptor{
 	Log log = LogFactory.getLog(MainLogicRepository.class);
 	
 	@Autowired
-	@Qualifier("sessionTemplete")
+	@Qualifier("sessionTemplete1")
 	SqlSessionTemplate template;
 	
 	public List<BeaconWithUserIdDTO> MainLogicSelectAll(){
