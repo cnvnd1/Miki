@@ -5,15 +5,17 @@ package com.test.dto;
 public class EventListDTO {
 	
 	String title;
-	int eventstart;
-	int eventend;
+	String eventstart;
+	String eventend;
+	
+	
 	
 	
 	public EventListDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public EventListDTO(String title, int eventstart, int eventend) {
+	public EventListDTO(String title, String eventstart, String eventend) {
 		super();
 		this.title = title;
 		this.eventstart = eventstart;
@@ -25,16 +27,16 @@ public class EventListDTO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getEventstart() {
+	public String getEventstart() {
 		return eventstart;
 	}
-	public void setEventstart(int eventstart) {
+	public void setEventstart(String eventstart) {
 		this.eventstart = eventstart;
 	}
-	public int getEventend() {
+	public String getEventend() {
 		return eventend;
 	}
-	public void setEventend(int eventend) {
+	public void setEventend(String eventend) {
 		this.eventend = eventend;
 	}
 	@Override
@@ -42,6 +44,9 @@ public class EventListDTO {
 		return "EventListDTO [title=" + title + ", eventstart=" + eventstart
 				+ ", eventend=" + eventend + "]";
 	}
+	
+	
+	
 	
 	
 	

@@ -1,17 +1,11 @@
 package com.test.dto.result;
 
-import java.io.Serializable;
+
 import java.util.Date;
-
 import com.test.dto.EventListDTO;
+public class EventListResultDTO  {
+	
 
-public class EventListResultDTO implements Serializable {
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	String title;
 	String start;
@@ -22,7 +16,7 @@ public class EventListResultDTO implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 
 	public EventListResultDTO(EventListDTO dto){
 		

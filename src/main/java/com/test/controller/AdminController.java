@@ -27,19 +27,11 @@ public class AdminController {
 	
 	@RequestMapping("/eventList")
 	@ResponseBody
-	public List<EventListResultDTO> eventListSelect(){
+	public List<EventListDTO> eventListSelect(){
 		log.info("eventListSelect 실행");
-		List<EventListResultDTO> resultList = new ArrayList<EventListResultDTO>();
+	
 		List<EventListDTO> list = adminService.eventListSelect();
-		
-		for (EventListDTO dto : list) {
-			resultList.add(new EventListResultDTO(dto));
-		}
-		
-		for (EventListResultDTO dto : resultList) {
-			System.out.println(dto);
-		}
-		return resultList;
+		return list;
 	}
 	
 }

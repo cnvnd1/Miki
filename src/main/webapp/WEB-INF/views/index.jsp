@@ -50,7 +50,6 @@
 <script type='text/javascript'>
 
 	$(document).ready(function() {
-		var eventList;
 		var date = new Date();
 		var d = date.getDate();
 		var m = date.getMonth();
@@ -61,10 +60,10 @@
 			method:"get",			
 			dataType:"json",
 			success:function(responseData,status,xhr){
-				//원래는 status확인 하는게 좋음 성공 200인지 
-				
+				//원래는 status확인 하는게 좋음 성공 200인지 		
 				console.log(responseData);
-			
+				eventList = responseData;
+			 	
 				
 			
 				
@@ -74,15 +73,36 @@
 						center: 'title',
 						right: 'month,agendaWeek,agendaDay'
 					},
-					editable: true,
+					editable: true,			
+					events: [{
+						title: eventList[0].title,
+						start: new Date(eventList[0].eventstart),
+						end : new Date(eventList[0].eventend)
+					},
+					{
+						title: eventList[1].title,
+						start: new Date(eventList[1].eventstart),
+						end : new Date(eventList[1].eventend)
+					},
+					{
+						title: eventList[2].title,
+						start: new Date(eventList[2].eventstart),
+						end : new Date(eventList[2].eventend)
+					},
+					{
+						title: eventList[3].title,
+						start: new Date(eventList[3].eventstart),
+						end : new Date(eventList[3].eventend)
+					},
+					{
+						title: eventList[4].title,
+						start: new Date(eventList[4].eventstart),
+						end : new Date(eventList[4].eventend)
+					},
 					
-						
 					
-					events: [
-								{
-									title: 'All Day Event',
-									start: new Date(y, m, 3)
-								}]
+					]
+								
 					
 				});
 			}
